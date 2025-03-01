@@ -1,0 +1,36 @@
+### `.gitignore`
+
+```gitignore
+# Python virtual environment
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Google Cloud credentials and sensitive files
+client_secrets.json
+*.key
+*.pem
+
+# Local testing and logs
+*.log
+*.log.*
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# System files (Windows)
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+
+# Deployed artifacts (not needed in repo)
+*.deploy
+*.gcloudignore
