@@ -57,54 +57,46 @@ This document outlines the solution’s design, technology stack, current limita
 
 ## Limitations
 
-1. **Hardcoded OAuth Credentials**:
-   - **Issue**: `config.py` uses hardcoded `client_id` and `client_secret` due to persistent GCS deployment issues with Secret Manager integration.
-   - **Impact**: Security risk in production; not scalable for team use.
-
-2. **Filesystem-Based Session Storage**:
+1. **Filesystem-Based Session Storage**:
    - **Issue**: Flask’s default session storage uses the server filesystem, unsuitable for multi-instance scaling on App Engine.
    - **Impact**: Session data may not persist across instances, affecting user experience.
 
-3. **Static Ghost Name List**:
+2. **Static Ghost Name List**:
    - **Issue**: Ghost names are loaded from a CSV (`ghost_names.csv`) via a script, not dynamically editable.
    - **Impact**: Limited scalability; adding names requires redeployment or manual Datastore updates.
 
-4. **Free Tier Constraints**:
+3. **Free Tier Constraints**:
    - **Issue**: Relies on App Engine’s free tier (28 instance hours/day, 1GB storage).
    - **Impact**: Potential downtime or scaling limits under heavy use.
 
-5. **Deployment Challenges**:
+4. **Deployment Challenges**:
    - **Issue**: Repeated `[7]` GCS errors during `gcloud app deploy`, resolved temporarily with manual permissions.
    - **Impact**: Indicates underlying bucket/service account sync issues.
 
 ## Future Improvements
 
-1. **Secret Manager Integration**:
-   - **Plan**: Replace hardcoded OAuth credentials with Google Secret Manager fetches in `config.py`.
-   - **Benefit**: Enhances security and allows team credential management.
-
-2. **Datastore-Based Sessions**:
+1. **Datastore-Based Sessions**:
    - **Plan**: Implement a custom `NdbSessionInterface` to store sessions in Datastore.
    - **Benefit**: Ensures session persistence across App Engine instances.
 
-3. **Dynamic Ghost Name Management**:
+2. **Dynamic Ghost Name Management**:
    - **Plan**: Add an admin route (e.g., `/admin/add-name`) to dynamically update ghost names in Datastore.
    - **Benefit**: Removes CSV dependency, improves scalability.
 
-4. **Logout Functionality**:
+3. **Logout Functionality**:
    - **Plan**: Add a `/logout` route to clear sessions and revoke OAuth tokens.
    - **Benefit**: Enhances user control and security.
 
-5. **Pagination for Overview**:
+4. **Pagination for Overview**:
    - **Plan**: Implement pagination or lazy loading for the taken names list.
    - **Benefit**: Improves performance with many users.
 
-6. **Resolve Deployment Issues**:
+5. **Resolve Deployment Issues**:
    - **Plan**: Investigate GCS staging bucket permissions (e.g., bucket policy, IAM sync) with GCP support.
    - **Benefit**: Ensures reliable deployments without manual fixes.
 
 ## Conclusion
-The Ghost Name App meets the technical exercise requirements with a functional, modular design hosted on Google App Engine. While it currently relies on temporary workarounds (e.g., hardcoded OAuth), the outlined improvements address these limitations, preparing it for production use. Unit tests (`tests/test_app.py`) validate core functionality, enhancing reliability.
+The Ghost Name App meets the technical exercise requirements with a functional, modular design hosted on Google App Engine. While it currently relies on temporary workarounds (e.g., hardcoded OAuth), the outlined improvements address these limitations, preparing it for production use. ~~Unit tests (`tests/test_app.py`) validate core functionality, enhancing reliability.~~
 
-Author: [Your Full Name]  
+Author: Wei Jing  
 Date: March 3, 2025
