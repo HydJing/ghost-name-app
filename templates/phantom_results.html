@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Choose Your Ghost Name</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Pick Your Phantom Name</h1>
+    <form method="POST">
+        {% for option, description in options %}
+            <label>
+                <input type="radio" name="ghost_name" value="{{ option }}" required>
+                {{ option }} - <em>{{ description }}</em>
+            </label><br>
+        {% endfor %}
+        <button type="submit">Select</button>
+    </form>
+</body>
+</html>
