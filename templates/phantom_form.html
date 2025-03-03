@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Page title -->
     <title>Phantom Name Form</title>
+    <!-- Link to CSS stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <!-- Form heading -->
     <h1>Enter Your Name</h1>
+    <!-- Form to collect user's first and last names -->
     <form method="POST">
         <label>First Name: <input type="text" name="first_name" required></label><br>
         <label>Last Name: <input type="text" name="last_name" required></label><br>

@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Page title -->
     <title>Choose Your Ghost Name</title>
+    <!-- Link to CSS stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <!-- Selection heading -->
     <h1>Pick Your Phantom Name</h1>
+    <!-- Form to select a ghost name -->
     <form method="POST">
         {% for option, description in options %}
+            <!-- Radio button for each ghost name option -->
             <label>
                 <input type="radio" name="ghost_name" value="{{ option }}" required>
                 {{ option }} - <em>{{ description }}</em>

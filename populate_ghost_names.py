@@ -1,12 +1,15 @@
+# Script to populate GhostName entities in Datastore from a CSV file
 import csv
 from google.cloud import ndb
 
 class GhostName(ndb.Model):
+    """Model for ghost names (duplicated here for standalone execution)."""
     name = ndb.StringProperty()
     description = ndb.StringProperty()
     is_taken = ndb.BooleanProperty(default=False)
 
 def populate_ghost_names(csv_file="ghost_names.csv"):
+    """Populate Datastore with ghost names from a CSV file."""
     client = ndb.Client()
     with client.context():
         existing = {g.name for g in GhostName.query().fetch()}

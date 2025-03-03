@@ -1,7 +1,9 @@
+# Configuration module for OAuth settings
 import os
 from google.cloud import secretmanager
 import logging
 
+# Set up logging for configuration-related messages
 logger = logging.getLogger(__name__)
 
 # Secret Manager Client
@@ -44,6 +46,8 @@ CLIENT_SECRETS = {
         "token_uri": "https://accounts.google.com/o/oauth2/token"
     }
 }
+
+# Define OAuth scopes for user authentication
 SCOPES = [
     "openid",
     "https://www.googleapis.com/auth/userinfo.email",

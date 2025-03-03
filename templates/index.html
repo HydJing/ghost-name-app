@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Page title -->
     <title>Ghost Name App</title>
+    <!-- Link to CSS stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <!-- Main heading -->
     <h1>Ghost Name Overview</h1>
+    <!-- Show login link if user is not authenticated -->
     {% if not logged_in %}
         <a href="{{ url_for('auth.login') }}">Login with Google</a>
     {% endif %}
+    <!-- Section for taken ghost names -->
     <h2>Taken Ghost Names</h2>
     <ul>
     {% for user in users %}
+        <!-- List each taken ghost name with user details -->
         <li>{{ user.first_name }} <strong>"{{ user.ghost_name }}"</strong> {{ user.last_name }} - {{ user.email }}</li>
     {% endfor %}
     </ul>
+    <!-- Link to phantom name form -->
     <a href="{{ url_for('phantom.phantom_form') }}">{{ link_text }}</a>
 </body>
 </html>
